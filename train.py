@@ -62,7 +62,7 @@ if args.dataset == "test-data":
     num_classes = 4
 
 transform_train = transforms.Compose([
-    transforms.Resize((64,64)),
+    transforms.Resize((128,128)),
     transforms.RandomRotation(60),
     transforms.RandomApply([
         transforms.RandomHorizontalFlip(),
