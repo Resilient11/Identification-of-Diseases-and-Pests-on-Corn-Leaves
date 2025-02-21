@@ -1,17 +1,60 @@
 # Identification-of-Diseases-and-Pests-on-Corn-Leaves
 基于深度学习的玉米叶片病虫害识别系统(A corn leaf disease and pest identification system based on deep learning)
 
-第一版
+第二版
 -----
-数据集选自PlantVillage DataSet : https://www.kaggle.com/datasets/soumiknafiul/plantvillage-dataset-labeled
+在第二版中，使用批量识别的方式，对测试文件夹内所有的图片进行批量识别，同时将transforms.Resize((64,64)),修改为transforms.Resize((128,128))再次训练
 
-共有4个分类，每个类别的训练集和测试集图片数量如下：
-| 名称\集 | train | test | sum |
-|-------|-------|-------|------|
-| Gray_leaf_spot  | 410 | 103 | 513 |
-| Common_rust | 948 | 238 | 1186 |
-|healthy| 929 | 233 | 1162 |
-|Leaf_Blight| 782 | 196 | 978 |
+识别结果如下：
 
-但最终结果非常不理想
 
+(在测试集上的识别情况)
+ 第一次：
+| 真实类别 | 识别结果 |
+|-----|-----|
+| Gray_leaf_spot  | 0.97% Gray_leaf_spot、00.00% Common_rust、**97.09% Healthy**、1.94% Leaf_Blight|
+| Common_rust     | 0.29% Gray_leaf_spot、**69.50% Common_rust**、29.62% Healthy、0.59% Leaf_Blight |
+| Healthy         | 0.17% Gray_leaf_spot、**41.29% Common_rust**、17.60% Healthy、**40.94% Leaf_Blight** |
+| Leaf_Blight     | 0.13% Gray_leaf_spot、**30.91% Common_rust、37.53% Healthy、31.43% Leaf_Blight**|
+
+第二次：
+| 真实类别 | 识别结果 |
+|-----|-----|
+| Gray_leaf_spot  | 0.97% Gray_leaf_spot、00.00% Common_rust、**97.09% Healthy**、1.94% Leaf_Blight|
+| Common_rust     | 0.00% Gray_leaf_spot、**99.58% Common_rust**、0.42% Healthy、0.00% Leaf_Blight |
+| Healthy         | 0% Gray_leaf_spot、0% Common_rust、 0% Healthy、**100% Leaf_Blight** |
+| Leaf_Blight     | 0% Gray_leaf_spot、0.51% Common_rust、**95.92% Healthy**、3.57% Leaf_Blight |
+
+第三次（与第二次完全相同）：
+| 真实类别 | 识别结果 |
+|-----|-----|
+| Gray_leaf_spot  | 0.97% Gray_leaf_spot、00.00% Common_rust、97.09% Healthy、1.94% Leaf_Blight|
+| Common_rust     | 0.00% Gray_leaf_spot、99.58% Common_rust、0.42% Healthy、0.00% Leaf_Blight |
+| Healthy         | 0% Gray_leaf_spot、0% Common_rust、 0% Healthy、100% Leaf_Blight |
+| Leaf_Blight     | 0% Gray_leaf_spot、0.51% Common_rust、95.92% Healthy、3.57% Leaf_Blight |
+
+
+（在训练集上的识别情况）
+ 第一次：
+| 真实类别 | 识别结果 |
+|-----|-----|
+| Gray_leaf_spot  | 0.24% Gray_leaf_spot、00.24% Common_rust、**97.07% Healthy**、2.44% Leaf_Blight|
+| Common_rust     | 0.00% Gray_leaf_spot、**99.47% Common_rust**、0.21% Healthy、0.32% Leaf_Blight |
+| Healthy         | 0.00% Gray_leaf_spot、0.00% Common_rust、0.00% Healthy、**100% Leaf_Blight** |
+| Leaf_Blight     | 0.00% Gray_leaf_spot、0.13% Common_rust、**96.68% Healthy**、3.20% Leaf_Blight|
+
+第二次（与第一次完全相同）：
+| 真实类别 | 识别结果 |
+|-----|-----|
+| Gray_leaf_spot  | 0.24% Gray_leaf_spot、00.24% Common_rust、**97.07% Healthy**、2.44% Leaf_Blight|
+| Common_rust     | 0.00% Gray_leaf_spot、**99.47% Common_rust**、0.21% Healthy、0.32% Leaf_Blight |
+| Healthy         | 0.00% Gray_leaf_spot、0.00% Common_rust、0.00% Healthy、**100% Leaf_Blight** |
+| Leaf_Blight     | 0.00% Gray_leaf_spot、0.13% Common_rust、**96.68% Healthy**、3.20% Leaf_Blight|
+
+第三次（与第一次完全相同）：
+| 真实类别 | 识别结果 |
+|-----|-----|
+| Gray_leaf_spot  | 0.24% Gray_leaf_spot、00.24% Common_rust、**97.07% Healthy**、2.44% Leaf_Blight|
+| Common_rust     | 0.00% Gray_leaf_spot、**99.47% Common_rust**、0.21% Healthy、0.32% Leaf_Blight |
+| Healthy         | 0.00% Gray_leaf_spot、0.00% Common_rust、0.00% Healthy、**100% Leaf_Blight** |
+| Leaf_Blight     | 0.00% Gray_leaf_spot、0.13% Common_rust、**96.68% Healthy**、3.20% Leaf_Blight|
