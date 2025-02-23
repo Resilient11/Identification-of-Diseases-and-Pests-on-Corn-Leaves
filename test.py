@@ -1,29 +1,14 @@
-# import torch
-#
-# print(f"PyTorch version: {torch.__version__}")  # 打印PyTorch版本
-# print(f"CUDA version: {torch.version.cuda}")  # 打印CUDA版本
-# print(f"CUDA available: {torch.cuda.is_available()}")  # 检查CUDA是否可用
-#
-# if torch.cuda.is_available():
-#     print(f"CUDA device count: {torch.cuda.device_count()}")
-#     print(f"CUDA device name: {torch.cuda.get_device_name(0)}")
-#
-# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-# print(f"使用的设备: {device}")
-
-
-
 import torch
 from model import shufflenetv2
 from torchvision import transforms
 from PIL import Image
 from train import trainset
 
-#
-# print(trainset.classes)
 
-#
-# Load the model
+# print(trainset.classes)    
+
+
+# 加载模型
 model = shufflenetv2(num_classes=4)
 model.load_state_dict(torch.load('shufflenetv2.pth'))
 model.eval()
